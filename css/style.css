@@ -1,3 +1,7 @@
 body{
 	background-color: navy;
 }
+#button{
+	display: flex;
+	flex-direction: column;
+}
