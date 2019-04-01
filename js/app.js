@@ -12,3 +12,17 @@ console.log(myPet.age);
 console.log(myPet.hunger);
 console.log(myPet.sleepness);
 console.log(myPet.boredom);
+
+
+
+
+
+
+//listener 
+$('#form').on('submit',(event)=>{
+	event.preventDefault()
+	const newName = $('#input-name').val()
+	$('#name').text(newName)
+	console.log("submit button clicked");
+	$('#input-name').val("")
+})
