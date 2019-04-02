@@ -4,14 +4,25 @@ class Tamagotchi {
 		this.sleepness = 1;
 		this.boredom = 1;
 		this.age = 0;
+		this.alive = true;
 	}
 }
 
+
+
 const myPet = new Tamagotchi();
+
+ //while(my still alive)
+
 console.log(myPet.age);
 console.log(myPet.hunger);
 console.log(myPet.sleepness);
 console.log(myPet.boredom);
+
+
+
+
+
 
 
 
