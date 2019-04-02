@@ -30,17 +30,28 @@ h1{
 
 }
 #metrics{
-	padding: 5px;
-	height:100px;
-	width: 400px;
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
+	height:80px;
+	width: 380px;
 	margin-left: 20px;
 	margin-top: 20px;
+	justify-content: center; 
 	align-self: flex-start;
 
 }
+#image{
+	display: flex;
+	height:400px;
+	width: 430px;
+	justify-content: center;
+	align-items: center;
+}
 img{
 	width: 15%;
-  	height: auto;
+  	height: 20%;
+  	/*align-self: flex-end ;*/
 
 }
 #buttonPanel{
