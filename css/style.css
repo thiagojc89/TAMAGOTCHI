@@ -20,6 +20,7 @@ h1{
 	/*align-items: flex-start;*/
 }
 #screen{
+	display: flex;
 	background-color: rgb(225, 227, 237);
 	height:400px;
 	width: 460px;
@@ -27,9 +28,10 @@ h1{
 
 	border: 2px dotted black;
 	border-radius: 20px;
+
 	/*flex-direction: row-reverse;*/
-	justify-content: flex-end;
-	/*align-items: flex-start;*/
+	align-items: center;
+	justify-content: center;
 
 }
 #buttonPanel{
@@ -47,10 +49,12 @@ h1{
 	font-size: 20px;
 	border-radius: 20px;
 	justify-content: space-around;
-
+}
+img{
+	width: 20%;
+  	height: auto;
 
 }
-
 
 
 
