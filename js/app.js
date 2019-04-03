@@ -5,7 +5,10 @@ class Tamagotchi {
 		this.boredom = 1;
 		this.age = 0;
 		this.dead = false;
-		this.name = name
+		this.name = name;
+		this.timeOfLife = 0
+		this.widthSize = 5;
+		this.heightSize = 
 	}
 	screenPositions(){ 
 		const position = ["flex-start","flex-end","center"][Math.floor(Math.random()*3)];
@@ -30,6 +33,7 @@ class Tamagotchi {
 	}
 	graveyard(reason){
 		console.log(` =( ${this.name} is dead beacause he/she was ${reason} `);
+		$('img').attr('src', 'image/baby-tamagotchi-dead.png');
 	}
 	relocate(){
 		$('#image').css('justify-content', `${this.screenPositions()}`)
@@ -38,6 +42,9 @@ class Tamagotchi {
 	morph(){
 		$('img').css('width', '30%');
 		$('img').css('height', '40%');
+		if (this.timeOfLife>= 120){
+			$('img').attr('src', 'image/baby-tamagotchi-morph.png');
+		}	
 	}
 }
 
@@ -61,6 +68,7 @@ const game = {
 	startTimer() {
 		this.intervalID = setInterval(() => {
 			this.time++
+			this.myPet.timeOfLife++
 			this.reasonOfDeath = "";
 			const timeInMillisecond = this.time * 1000
 			console.log(this.time);
@@ -104,7 +112,7 @@ const game = {
       			this.myPet.graveyard(this.reasonOfDeath)
       		}
       		
-    	 }, 1000)
+    	 }, 500)
     	// }, 1)
 	},
 
