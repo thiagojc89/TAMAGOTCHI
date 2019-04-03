@@ -32,12 +32,12 @@ class Tamagotchi {
 		console.log(` =( ${this.name} is dead beacause he/she was ${reason} `);
 	}
 	relocate(){
-
-		
 		$('#image').css('justify-content', `${this.screenPositions()}`)
-		
 		$('#image').css('align-items', `${this.screenPositions()}`)
-
+	}
+	morph(){
+		$('img').css('width', '30%');
+		$('img').css('height', '40%');
 	}
 }
 
@@ -80,6 +80,7 @@ const game = {
 			}
       		if (timeInMillisecond % 60000 === 0){	
       			this.myPet.getOlder();
+      			this.myPet.morph();
       			this.time = 0;
 			}
 
@@ -114,12 +115,12 @@ const game = {
 
 	playWithThePet() {
 		this.myPet.boredom--
-		$('#boredom').text(this.myPet.hunger);
+		$('#boredom').text(this.myPet.boredom);
 	},
 
-	turnOfTheLight() {
+	turnOffTheLight() {
 		this.myPet.sleepness--
-		$('#sleepness').text(this.myPet.hunger);
+		$('#sleepness').text(this.myPet.sleepness);
 	}
 
 }
@@ -139,7 +140,7 @@ $('.button').on('click',(event)=>{
 
 	if (e.attr('id') === "light"){
 		
-		game.turnOfTheLight() 
+		game.turnOffTheLight() 
 	}
 	if (e.attr('id') === "feed"){
 		

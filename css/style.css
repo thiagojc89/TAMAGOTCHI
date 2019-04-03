@@ -45,12 +45,16 @@ h1{
 	display: flex;
 	height:400px;
 	width: 430px;
+	/*padding-bottom: 25px;
+	padding-right: 30px;
+	padding-left: 30px;*/
 	justify-content: center;
 	align-items: center;
 }
 img{
 	width: 15%;
   	height: 20%;
+  	margin: 20px;
   	/*align-self: flex-end ;*/
 
 }
