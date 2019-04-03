@@ -7,8 +7,6 @@ class Tamagotchi {
 		this.dead = false;
 		this.name = name;
 		this.timeOfLife = 0
-		this.widthSize = 5;
-		this.heightSize = 
 	}
 	screenPositions(){ 
 		const position = ["flex-start","flex-end","center"][Math.floor(Math.random()*3)];
@@ -53,6 +51,8 @@ const game = {
 	myPet: null, 
 	intervalID: null,
 	time: 0,
+	lightsON:false,
+	light: false,
 
  	start(name) {
 		// create new tomagotchi
@@ -67,6 +67,7 @@ const game = {
 	},
 	startTimer() {
 		this.intervalID = setInterval(() => {
+			
 			this.time++
 			this.myPet.timeOfLife++
 			this.reasonOfDeath = "";
@@ -112,23 +113,38 @@ const game = {
       			this.myPet.graveyard(this.reasonOfDeath)
       		}
       		
-    	 }, 500)
+    	 }, 100)
     	// }, 1)
 	},
 
 	feedThePet() {
-		this.myPet.hunger--
-		$('#hunger').text(this.myPet.hunger);
+		if (this.myPet.hunger>1){
+			this.myPet.hunger--
+			$('#hunger').text(this.myPet.hunger);
+		}
 	},
 
 	playWithThePet() {
-		this.myPet.boredom--
-		$('#boredom').text(this.myPet.boredom);
+		if (this.myPet.boredom>1){	
+			this.myPet.boredom--
+			$('#boredom').text(this.myPet.boredom);
+		}
 	},
 
-	turnOffTheLight() {
-		this.myPet.sleepness--
-		$('#sleepness').text(this.myPet.sleepness);
+	turnOnOffTheLight() {
+		
+		if (this.light){
+			if (this.myPet.sleepness >1){
+				this.myPet.sleepness--
+				$('#sleepness').text(this.myPet.sleepness);
+			    $('#screen').css('background', 'rgb(225, 227, 237)');
+			    this.light = false;
+			}
+		}else{
+			$('#screen').css('background', 'url(image/sleep-background.gif)');
+			$('#screen').css('background-size', 'cover');
+			this.light = true;
+		}
 	}
 
 }
@@ -148,7 +164,7 @@ $('.button').on('click',(event)=>{
 
 	if (e.attr('id') === "light"){
 		
-		game.turnOffTheLight() 
+		game.turnOnOffTheLight() 
 	}
 	if (e.attr('id') === "feed"){
 		
