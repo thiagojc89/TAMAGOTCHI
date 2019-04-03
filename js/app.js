@@ -5,37 +5,26 @@ class Tamagotchi {
 		this.boredom = 1;
 		this.age = 0;
 		this.dead = false;
-		// this.ageTimer = 30;
 		this.name = name
 	}
 
 	getOlder() {
 		this.age++
+		$('#age').text(this.age);
 	}
-
-	// startTimer() {
-	// 	this.gameTimer = setInterval(() => {
-    		
- //    		console.log("timer running");
-    		
- //    		//increase age 
- //      		let $age = parseInt($('#age').text());
- //      		console.log($age);
- //      		$age+=1;
- //      		$('#age').text($age);
- //      		console.log()
-
- //      		//the Timer will stop when the Tamagotchi is dead =[.
- //      		if (this.dead){
- //      			clearInterval(this.gameTimer)
-
- //      		}
-      		
- //    	// }, 60000)
- //    	}, 1000)
- //    	// this.feedPet = 
-	// }
-// }
+	getHunger() {
+		this.hunger++
+		$('#hunger').text(this.hunger);
+	}
+	getSleepy() {
+		this.sleepness++
+		$('#sleepness').text(this.sleepness);
+	}
+	getBorded() {
+		this.boredom++
+		$('#boredom').text(this.boredom);
+	}
+}
 
 
 const game = {
@@ -56,30 +45,39 @@ const game = {
 	},
 	startTimer() {
 		this.intervalID = setInterval(() => {
-    		
-
 			this.time++
+			const timeInMillisecond = this.time * 10000
 			console.log(this.time);
-
-
-    		console.log("timer running");
     		
-    		//increase age 
-      		// let $age = parseInt($('#age').text());
-      		// console.log($age);
-      		this.myPet.getOlder();
-      		// $('#age').text($age);
-      		// console.log()
-
-      		//the Timer will stop when the Tamagotchi is dead =[.
-      		// if (this.dead){
-      		// 	clearInterval(this.gameTimer)
-
-      		// }
       		
-    	// }, 60000)
-    	}, 1000)
-    	// this.feedPet = 
+      		if (timeInMillisecond % 60000 === 0){	
+      			this.myPet.getOlder();
+			}
+
+			if (timeInMillisecond % 5000 === 0){	
+				this.myPet.getHunger();
+			}
+
+			if (timeInMillisecond % 30000 === 0){	
+				this.myPet.getSleepy();
+			}
+
+			if (timeInMillisecond % 15000 === 0){	
+				this.myPet.getBorded()
+      		}
+
+      		console.log(this.myPet.hunger, this.myPet.sleepness, this.myPet.boredom);
+      		//validate if my Tamagotchi did not reach to metrics required to be dead
+      		if (this.myPet.hunger>=10 || this.myPet.sleepness>=10 || this.myPet.boredom>=10){
+      			this.myPet.dead = true;
+      		}
+
+      		if (this.myPet.dead){
+      			clearInterval(this.intervalID)
+      		}
+      		
+    	 }, 1000)
+    	// }, 1)
 	},
 
 	asdf() {
@@ -90,34 +88,6 @@ const game = {
 
 	}
 }
-
-
-
-const fish = {
-	name: "fred",
-	swim() {
-		console.log(`hi i'm ${this.name} and I'm swimming`); // Hi I'm fred and I'm swimming
-	}
-}
-
-
-
-// myPet.startTimer();
-
-//  //while(my still alive)
-
-// console.log(myPet.age);
-// console.log(myPet.hunger);
-// console.log(myPet.sleepness);
-// console.log(myPet.boredom);
-
-
-
-
-
-
-
-
 
 
 //listener 
