@@ -7,7 +7,11 @@ class Tamagotchi {
 		this.dead = false;
 		this.name = name
 	}
+	screenPositions(){ 
+		const position = ["flex-start","flex-end","center"][Math.floor(Math.random()*3)];
+		return position;
 
+	}
 	getOlder() {
 		this.age++
 		$('#age').text(this.age);
@@ -26,6 +30,14 @@ class Tamagotchi {
 	}
 	graveyard(reason){
 		console.log(` =( ${this.name} is dead beacause he/she was ${reason} `);
+	}
+	relocate(){
+
+		
+		$('#image').css('justify-content', `${this.screenPositions()}`)
+		
+		$('#image').css('align-items', `${this.screenPositions()}`)
+
 	}
 }
 
@@ -52,7 +64,10 @@ const game = {
 			this.reasonOfDeath = "";
 			const timeInMillisecond = this.time * 1000
 			console.log(this.time);
-      		
+
+			if (timeInMillisecond % 2000 === 0){	
+				this.myPet.relocate();
+			}
 			if (timeInMillisecond % 5000 === 0){	
 				this.myPet.getHunger();
 			}
@@ -68,7 +83,6 @@ const game = {
       			this.time = 0;
 			}
 
-      		console.log(this.myPet.hunger, this.myPet.sleepness, this.myPet.boredom);
       		//validate if my Tamagotchi did not reach to metrics required to be dead
       		if (this.myPet.hunger>=10){
       			this.myPet.dead = true;
@@ -80,7 +94,7 @@ const game = {
       		}
       		if (this.myPet.boredom>=10){
       			this.myPet.dead = true;
-      			this.reasonOfDeath = "freaking out of doing NOTHING";
+      			this.reasonOfDeath = "tired of doing NOTHING";
     
       		}
 
@@ -95,14 +109,17 @@ const game = {
 
 	feedThePet() {
 		this.myPet.hunger--
+		$('#hunger').text(this.myPet.hunger);
 	},
 
 	playWithThePet() {
 		this.myPet.boredom--
+		$('#boredom').text(this.myPet.hunger);
 	},
 
 	turnOfTheLight() {
 		this.myPet.sleepness--
+		$('#sleepness').text(this.myPet.hunger);
 	}
 
 }
